@@ -91,7 +91,7 @@ footer{padding:25px 0 100px 0;background:var(--navy);color:rgba(255,255,255,.55)
 }
 @media(max-width:650px){
 .container{width:min(calc(100% - 28px),var(--max))}section{padding:70px 0}
-.cards,.stats,.tool-grid,.expect-grid{grid-template-columns:1fr}.experience{grid-template-columns:1fr;gap:15px}
+.cards,.stats,.expect-grid{grid-template-columns:1fr}.experience{grid-template-columns:1fr;gap:15px}
 .process-grid{grid-template-columns:1fr}.section-head{display:block}.section-intro{margin-top:16px}
 .hero-actions .btn{width:100%}.photo-card{min-height:390px}.photo-card img{height:364px}
 }
@@ -119,107 +119,117 @@ footer { font-size: 14px; }
 /* ------------------------------------------- */
 /* Animated tools section & Layout Fixes       */
 /* ------------------------------------------- */
-.tool-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+
+
+.tool-grid{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding:18px 0 28px;
+  display:flex;
+  justify-content:center;
+  mask-image:linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
 }
 
-.tool {
-  position: relative;
-  overflow: hidden;
-  min-height: 160px;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 12px;
-  padding: 24px 16px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  will-change: transform;
+.tool-track{
+  display:flex;
+  width:max-content;
+  gap:30px;
+  animation:toolsMarquee 30s linear infinite;
+  will-change:transform;
 }
 
-.tool:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
+.tool-row{
+  display:flex;
+  width:max-content;
+  gap:30px;
+  flex-shrink:0;
 }
 
-.tool-logo {
-  position: relative;
-  overflow: hidden;
-  width: 76px;
-  height: 76px;
-  flex: 0 0 76px;
-  border-radius: 16px;
-  background: #fff;
-  border: 1px solid rgba(49, 54, 71, 0.08);
-  display: grid;
-  place-items: center;
+.tool{
+  flex:0 0 172px;
+  width:172px;
+  min-height:172px;
+  padding:18px 14px 16px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 12px 34px rgba(49,54,71,.09);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
 
-.tool-logo img {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
-  display: block;
-  position: relative;
-  z-index: 1;
-  animation: logoPulse 4s ease-in-out infinite;
-  will-change: transform;
+.tool:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 42px rgba(49,54,71,.15);
 }
 
-.tool:nth-child(2n) .tool-logo img { animation-delay: -1s; }
-.tool:nth-child(3n) .tool-logo img { animation-delay: -2s; }
-.tool:nth-child(4n) .tool-logo img { animation-delay: -3s; }
-.tool:nth-child(5n) .tool-logo img { animation-delay: -1.5s; }
-
-@keyframes logoPulse {
-  0%, 100% { transform: scale(1) translateY(0); }
-  50% { transform: scale(1.12) translateY(-3px); }
+.tool-logo{
+  width:104px;
+  height:104px;
+  background:#fff;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  margin-bottom:12px;
 }
 
-.tool:hover .tool-logo img {
-  animation-play-state: paused;
-  transform: scale(1.15);
-  transition: transform 0.3s ease;
+.tool-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
 }
 
-.tool strong {
-  display: block;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.2;
-  color: var(--navy);
+.tool strong{
+  font-size:16px;
+  line-height:1.2;
+  color:var(--ink);
 }
 
-.tool small {
-  display: none !important;
+@keyframes toolsMarquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(calc(-50% - 15px))}
 }
 
-.tool-logo::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-  transform: translateX(-130%);
-  animation: logoShine 5s infinite;
-}
-.tool:nth-child(odd) .tool-logo::after { animation-delay: -2.5s; }
-
-@keyframes logoShine {
-  0%, 60% { transform: translateX(-130%); }
-  100% { transform: translateX(130%); }
+@media (max-width:900px){
+  .tool{flex-basis:156px;width:156px;min-height:158px}
+  .tool-logo{width:92px;height:92px}
+  .tool-track,.tool-row{gap:24px}
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tool-logo img, .tool-logo::after {
-    animation: none !important;
+@media (max-width:650px){
+  .tool-grid{
+    padding:14px 0 22px;
+    mask-image:none;
+    -webkit-mask-image:none;
   }
+  .tool-track{gap:18px;animation-duration:26s}
+  .tool-row{gap:18px}
+  .tool{
+    flex-basis:136px;
+    width:136px;
+    min-height:142px;
+    padding:14px 10px;
+  }
+  .tool-logo{width:80px;height:80px;margin-bottom:9px}
+  .tool strong{font-size:14px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .tool-track{
+    animation:none;
+    transform:none;
+  }
+}
+}
+
 }
 
 /* ------------------------------------------- */
@@ -262,12 +272,115 @@ footer { font-size: 14px; }
     font-size: 15px;
   }
 }
+
+/* Keep the Let's connect area centered on desktop and mobile */
+#contact,
+#connect,
+.lets-connect,
+.connect-section,
+.connect-wrap{
+  text-align:center;
+}
+
+#contact .container,
+#connect .container,
+.lets-connect .container,
+.connect-section .container,
+.connect-wrap{
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+@media (max-width:650px){
+  #contact,
+  #connect,
+  .lets-connect,
+  .connect-section,
+  .connect-wrap{
+    text-align:center;
+  }
+}
+
+
+/* CP logo/photo placeholder */
+.brand-logo-placeholder{
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  border-radius:12px;
+  background:var(--white);
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  margin-right:10px;
+}
+
+.brand-logo-placeholder img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* If the placeholder image doesn't exist yet, keep the slot visibly ready for replacement. */
+.brand-logo-placeholder img[src="images/cp-logo-placeholder.png"]{
+  background:linear-gradient(135deg,var(--sage),var(--cream));
+}
+
+
+.brand-logo-placeholder + *{vertical-align:middle}
+
+
+/* Center the tools marquee */
+.tool-grid{
+  display:block !important;
+  text-align:center;
+  overflow:hidden;
+  position:relative;
+  width:100%;
+}
+
+.tool-track{
+  width:max-content !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  justify-content:center;
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  animation:toolsMarqueeCentered 30s linear infinite !important;
+}
+
+@keyframes toolsMarqueeCentered{
+  0%{
+    transform:translateX(-50%);
+  }
+  100%{
+    transform:translateX(calc(-100% + 50vw));
+  }
+}
+
+@media (max-width:650px){
+  .tool-track{
+    animation-duration:26s !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .tool-track{
+    animation:none !important;
+    transform:translateX(-50%) !important;
+  }
+}
+
 </style>
 </head>
 <body>
 <header class="nav">
 <div class="container nav-inner">
-<a class="brand" href="#top"><span class="brand-mark">CP</span><span>Christian Paul Cervantes</span></a>
+<a class="brand" href="#top"><span class="brand-logo-placeholder"><img src="images/cp-logo-placeholder.png" alt="CP logo or photo"></span><span>Christian Paul Cervantes</span></a>
 <nav class="nav-links"><a href="#about">About</a><a href="#services">Services</a><a href="#tools">Tools</a><a href="#experience">Experience</a></nav>
 <a class="nav-cta" href="#contact">Let's Connect</a>
 </div>
@@ -320,86 +433,53 @@ footer { font-size: 14px; }
 </div>
 </section>
 
+
 <section id="tools">
-<div class="container tools-wrap">
-<div class="tools-copy"><div class="kicker">Tools & Systems</div><h2>Tools I use.</h2><p>I'm comfortable working with business, communication, organization, AI, and creative platforms to keep work efficient and organized.</p><p><strong>Insurance systems are part of my background, but they don't define the scope of my VA services.</strong></p>
-<p class="logo-note"><small></small></p></div>
-<div class="tool-grid">
-<div class="tool">
-  <div class="tool-logo" title="Replace images/assets/ezlynx.png with the real logo">
-    <img src="tools/EZ.png" alt="EZLynx logo" loading="lazy">
-  </div>
-  <div><strong>EZLynx</strong><small>AMS</small></div>
+  <div class="container tools-wrap">
+    <div class="tools-copy">
+      <div class="kicker">Tools & Systems</div>
+      <h2>Tools I use.</h2>
+      <p>I'm comfortable working with business, communication, organization, AI, and creative platforms to keep work efficient and organized.</p>
+      <p><strong>Insurance systems are part of my background, but they don't define the scope of my VA services.</strong></p>
+    </div>
+
+    <div class="tool-grid" aria-label="Tools I use" style="display:block;text-align:center;">
+      <div class="tool-track">
+        
+<div class="tool-row">
+  <div class="tool"><div class="tool-logo"><img src="tools/EZ.png" alt="EZLynx"></div><strong>EZLynx</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/AZ.png" alt="AgencyZoom"></div><strong>AgencyZoom</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Goo.png" alt="Google Workspace"></div><strong>Google Workspace</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Out.png" alt="Outlook"></div><strong>Outlook</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Teams.png" alt="Microsoft Teams"></div><strong>Microsoft Teams</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Sla.png" alt="Slack"></div><strong>Slack</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Zoom.png" alt="Zoom"></div><strong>Zoom</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Can.png" alt="Canva"></div><strong>Canva</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Cap.png" alt="CapCut"></div><strong>CapCut</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/gpt.png" alt="ChatGPT"></div><strong>ChatGPT</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Non.png" alt="Notion"></div><strong>Notion</strong></div>
 </div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/agencyzoom.png with the real logo">
-    <img src="tools/AZ.png" alt="AgencyZoom logo" loading="lazy">
-  </div>
-  <div><strong>AgencyZoom</strong><small>CRM / workflow</small></div>
+
+        
+<div class="tool-row">
+  <div class="tool"><div class="tool-logo"><img src="tools/EZ.png" alt="EZLynx"></div><strong>EZLynx</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/AZ.png" alt="AgencyZoom"></div><strong>AgencyZoom</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Goo.png" alt="Google Workspace"></div><strong>Google Workspace</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Out.png" alt="Outlook"></div><strong>Outlook</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Teams.png" alt="Microsoft Teams"></div><strong>Microsoft Teams</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Sla.png" alt="Slack"></div><strong>Slack</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Zoom.png" alt="Zoom"></div><strong>Zoom</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Can.png" alt="Canva"></div><strong>Canva</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Cap.png" alt="CapCut"></div><strong>CapCut</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/gpt.png" alt="ChatGPT"></div><strong>ChatGPT</strong></div>
+  <div class="tool"><div class="tool-logo"><img src="tools/Non.png" alt="Notion"></div><strong>Notion</strong></div>
 </div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/carrier-portals.png with the real logo">
-    <img src="tools/carrier-portals.png" alt="Carrier Portals logo" loading="lazy">
-  </div>
-  <div><strong>Carrier Portals</strong><small>Insurance systems</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/google-workspace.png with the real logo">
-    <img src="tools/Goo.png" alt="Google Workspace logo" loading="lazy">
-  </div>
-  <div><strong>Google Workspace</strong><small>Productivity</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/outlook.png with the real logo">
-    <img src="tools/Out.png" alt="Outlook logo" loading="lazy">
-  </div>
-  <div><strong>Outlook</strong><small>Email</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/microsoft-teams.png with the real logo">
-    <img src="tools/Teams.png" alt="Microsoft Teams logo" loading="lazy">
-  </div>
-  <div><strong>Microsoft Teams</strong><small>Communication</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/slack.png with the real logo">
-    <img src="tools/Sla.png" alt="Slack logo" loading="lazy">
-  </div>
-  <div><strong>Slack</strong><small>Communication</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/zoom.png with the real logo">
-    <img src="tools/Zoom.png" alt="Zoom logo" loading="lazy">
-  </div>
-  <div><strong>Zoom</strong><small>Meetings</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/canva.png with the real logo">
-    <img src="tools/Can.png" alt="Canva logo" loading="lazy">
-  </div>
-  <div><strong>Canva</strong><small>Design</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/capcut.png with the real logo">
-    <img src="tools/Cap.png" alt="CapCut logo" loading="lazy">
-  </div>
-  <div><strong>CapCut</strong><small>Video editing</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/chatgpt.png with the real logo">
-    <img src="tools/gpt.png" alt="ChatGPT logo" loading="lazy">
-  </div>
-  <div><strong>ChatGPT</strong><small>AI & automation</small></div>
-</div>
-<div class="tool">
-  <div class="tool-logo" title="Replace images/tools/notion.png with the real logo">
-    <img src="tools/Non.png" alt="Notion logo" loading="lazy">
-  </div>
-  <div><strong>Notion</strong><small>Organization</small></div>
-</div>
+
       </div>
-</div>
+    </div>
+  </div>
 </section>
+
 
 <section class="process">
 <div class="container">
