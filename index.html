@@ -277,7 +277,31 @@ footer { font-size: 14px; }
     font-size: 15px;
   }
 }
+
+/* Keep button text on a single line */
+.nav-cta {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Adjust header spacing on mobile screens */
+@media (max-width: 650px) {
+  .nav-inner {
+    gap: 10px; /* Reduces space between your name and the button */
+  }
+
+  .brand span:last-child {
+    font-size: 14px; /* Keeps your name compact on small screens */
+  }
+
+  .nav-cta {
+    padding: 8px 14px; /* Reduces padding so the button fits cleanly */
+    font-size: 13px;    /* Slightly smaller font to guarantee single-line fit */
+  }
+}
+
 </style>
+
 </head>
 <body>
 <header class="nav">
