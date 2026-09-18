@@ -907,6 +907,23 @@ footer {
    These rules activate at 650px and below.
    ========================================================= */
 @media (max-width: 650px) {
+
+  /* Mobile: make the photo label fit the photo width */
+.photo-label {
+  left: 50%;
+  right: auto;
+  bottom: 20px;
+  width: calc(100% - 40px);
+  max-width: 90%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: clamp(11px, 3.2vw, 14px);
+  line-height: 1.2;
+  padding: 9px 12px;
+  white-space: normal;
+  box-sizing: border-box;
+}
+
   .container {
     width: min(calc(100% - 28px), var(--max-width));
   }
