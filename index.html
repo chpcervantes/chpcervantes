@@ -22,6 +22,21 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .nav-links{display:flex;gap:24px;color:var(--slate);font-weight:700}
 .nav-links a:hover{color:var(--navy)}.nav-cta{padding:11px 17px;border-radius:999px;background:var(--navy);color:#fff;font-weight:800;}
 
+.brand-logo-placeholder {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; /* Makes the photo a circle */
+  overflow: hidden;   /* Clips the image edges to fit the circle */
+  flex-shrink: 0;     /* Keeps it from shrinking on smaller screens */
+  display: block;
+}
+
+.brand-logo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Ensures the photo fills the circle without stretching */
+}
+
 .hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:80px 0 76px}
 .hero:after{content:"";position:absolute;width:500px;height:500px;right:-180px;top:-210px;border-radius:50%;background:var(--sage);opacity:.22}
 .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr .82fr;align-items:center;gap:70px}
@@ -267,7 +282,7 @@ footer { font-size: 14px; }
 <body>
 <header class="nav">
 <div class="container nav-inner">
-<a class="brand" href="#top"><span class="brand-mark">CP</span><span>Christian Paul Cervantes</span></a>
+<a class="brand" href="#top"><span class="brand-logo-placeholder"><img src="images/profile.jpg" alt="Christian Paul Cervantes"></span><span>Christian Paul Cervantes</span></a>
 <nav class="nav-links"><a href="#about">About</a><a href="#services">Services</a><a href="#tools">Tools</a><a href="#experience">Experience</a></nav>
 <a class="nav-cta" href="#contact">Let's Connect</a>
 </div>
