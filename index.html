@@ -1100,6 +1100,507 @@ footer {
 
 </style>
 
+
+<style id="previous-changes-applied">
+/* ============================================================
+   PREVIOUS DESIGN CHANGES APPLIED
+   ------------------------------------------------------------
+   1. New color profile:
+      #111111  Almost Black  → page background
+      #A90000  Vintage Red   → brand / accent
+      #F1ECE3  Ivory         → primary text
+      #B7B0A5  Warm Gray     → secondary text
+      #292929  Graphite      → cards / panels
+
+   2. Tool logo spacing fix:
+      Larger logo area + natural image proportions so logos
+      have more breathing room and do not look squeezed.
+   ============================================================ */
+
+/* =========================
+   COLOR PROFILE
+   ========================= */
+:root{
+  --charcoal:#111111;
+  --oxblood:#A90000;
+  --cream:#F1ECE3;
+  --taupe:#B7B0A5;
+  --brown:#292929;
+  --white:#F1ECE3;
+
+  --line:rgba(241,236,227,.16);
+  --shadow:0 22px 55px rgba(0,0,0,.28);
+}
+
+/* Main page */
+body{
+  background:var(--charcoal);
+  color:var(--cream);
+}
+
+/* Header */
+.nav{
+  background:rgba(17,17,17,.92);
+  border-color:var(--line);
+}
+.brand-logo-placeholder{
+  background:var(--brown);
+  border-color:rgba(169,0,0,.75);
+}
+.nav-links{color:var(--taupe)}
+.nav-links a:hover{color:var(--cream)}
+.nav-cta{
+  background:var(--oxblood);
+  color:var(--cream);
+}
+
+/* Hero */
+.hero{
+  background:var(--charcoal);
+  color:var(--cream);
+}
+.hero::after{background:var(--oxblood)}
+.eyebrow,.kicker{color:var(--taupe)}
+.eyebrow::before{background:var(--oxblood)}
+.hero-copy{color:var(--taupe)}
+.btn-primary{
+  background:var(--oxblood);
+  color:var(--cream);
+}
+.btn-secondary{
+  border-color:rgba(241,236,227,.38);
+  color:var(--cream);
+}
+
+/* Photo framing */
+.photo-card,
+.about-image{
+  background:var(--brown);
+}
+.photo-card::before{
+  display:none;
+  background:none;
+}
+.photo-label{
+  background:var(--oxblood);
+  color:var(--cream);
+}
+
+/* General sections */
+section{
+  background:var(--charcoal);
+}
+.section-intro,
+.about-copy p,
+.tools-copy p,
+.experience-meta,
+.experience p,
+.card p,
+.expect-card p{
+  color:var(--taupe);
+}
+
+/* Light sections become dark graphite sections */
+.services,
+.expect{
+  background:#171717;
+}
+
+/* Cards */
+.stat,
+.card,
+.experience,
+.expect-card,
+.tool{
+  background:var(--brown);
+  border-color:var(--line);
+  color:var(--cream);
+}
+
+.stat strong,
+.card h3,
+.experience h3,
+.expect-card h3,
+.tool strong{
+  color:var(--cream);
+}
+
+.stat span{color:var(--taupe)}
+
+.card-icon{
+  background:var(--oxblood);
+  color:var(--cream);
+}
+
+.tag{
+  background:rgba(241,236,227,.08);
+  color:var(--taupe);
+  border-color:rgba(241,236,227,.11);
+}
+
+.card:hover,
+.tool:hover{
+  border-color:rgba(169,0,0,.85);
+  box-shadow:0 16px 36px rgba(0,0,0,.28);
+}
+
+/* Workflow */
+.process{
+  background:var(--brown);
+  border-block-color:var(--line);
+}
+.process .kicker,
+.process .section-intro,
+.step p{
+  color:var(--taupe);
+}
+.step{
+  border-top-color:var(--oxblood);
+  background:rgba(17,17,17,.35);
+}
+.step-number{color:var(--oxblood)}
+
+/* Experience */
+.experience{
+  border-left-color:var(--oxblood);
+}
+.experience h4{color:var(--taupe)}
+
+/* Expectations */
+.expect{
+  background:#171717;
+}
+
+/* Contact */
+.contact{
+  background:var(--charcoal);
+}
+.contact .kicker,
+.contact p{
+  color:var(--taupe);
+}
+.contact-chip{
+  color:var(--taupe);
+  border-color:rgba(241,236,227,.18);
+}
+
+/* Footer */
+footer{
+  background:var(--charcoal);
+  color:var(--taupe);
+  border-color:var(--line);
+}
+
+/* Floating Book a Call */
+.floating-cal{
+  background:var(--oxblood);
+  color:var(--cream);
+  border-color:rgba(241,236,227,.25);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+.floating-cal:hover{
+  background:#C00000;
+}
+
+/* =========================
+   TOOL LOGO SPACING FIX
+   =========================
+   The cards remain in the existing 3-column grid.
+   The logo box is larger, while the actual image is allowed
+   to keep its natural proportions.
+   */
+.tool{
+  min-height:210px !important;
+  padding:24px 16px 20px !important;
+}
+
+.tool-logo{
+  width:116px !important;
+  height:116px !important;
+  flex:0 0 116px !important;
+  padding:7px !important;
+  border-radius:20px !important;
+  background:var(--cream) !important;
+  border-color:rgba(169,0,0,.25) !important;
+  box-sizing:border-box;
+}
+
+.tool-logo img{
+  width:auto !important;
+  height:auto !important;
+  max-width:100% !important;
+  max-height:100% !important;
+  object-fit:contain !important;
+  display:block;
+}
+
+/* Give labels consistent breathing room */
+.tool strong{
+  min-height:38px;
+  line-height:1.15;
+}
+
+/* Keep the existing logo animations */
+.tool-logo img{
+  animation:logoPulse 4s ease-in-out infinite;
+}
+
+.tool-logo::after{
+  animation:logoShine 5s infinite;
+}
+
+/* Tablet */
+@media (max-width:900px){
+  .tool{
+    min-height:196px !important;
+  }
+
+  .tool-logo{
+    width:106px !important;
+    height:106px !important;
+    flex-basis:106px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width:650px){
+  .tool{
+    min-height:180px !important;
+    padding:18px 12px !important;
+  }
+
+  .tool-logo{
+    width:96px !important;
+    height:96px !important;
+    flex-basis:96px !important;
+    padding:6px !important;
+    margin-bottom:4px !important;
+  }
+
+  .tool strong{
+    min-height:30px;
+    font-size:15px !important;
+  }
+}
+</style>
+
+
+<style id="contact-form-color-profile">
+/* ============================================================
+   CONTACT FORM + PROFILE PHOTO FINAL COLOR FIX
+   ------------------------------------------------------------
+   Send a Message uses the same five-color profile:
+   #111111  Almost Black
+   #A90000  Vintage Red
+   #F1ECE3  Ivory
+   #B7B0A5  Warm Gray
+   #292929  Graphite
+   ============================================================ */
+
+/* Remove the red gradient overlay from the profile photo. */
+.photo-card::before{
+  display:none !important;
+  background:none !important;
+}
+
+/* Contact section */
+.contact{
+  background:var(--charcoal) !important;
+  color:var(--cream);
+  text-align:left;
+}
+
+.contact .container{
+  display:grid;
+  grid-template-columns:.78fr 1.22fr;
+  gap:clamp(42px,7vw,100px);
+  align-items:start;
+}
+
+.contact .kicker{
+  color:var(--taupe);
+}
+
+.contact h2{
+  max-width:620px;
+  margin:0;
+}
+
+.contact p{
+  margin:20px 0 28px;
+  color:var(--taupe);
+  font-size:1.05rem;
+}
+
+.contact .hero-actions{
+  justify-content:flex-start;
+}
+
+.contact-info{
+  display:flex;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:28px;
+}
+
+.contact-chip{
+  padding:8px 12px;
+  border:1px solid rgba(241,236,227,.18);
+  border-radius:999px;
+  color:var(--taupe);
+  font-size:.78rem;
+}
+
+/* Send a Message card */
+.contact-form{
+  background:var(--brown);
+  border:1px solid rgba(241,236,227,.18);
+  border-radius:2px;
+  padding:clamp(24px,4vw,42px);
+  box-shadow:var(--shadow);
+}
+
+.contact-form h3{
+  margin:0 0 25px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:2.35rem;
+  font-weight:600;
+  line-height:1;
+  color:var(--cream);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.form-field{
+  display:grid;
+  gap:7px;
+}
+
+.form-field.full{
+  grid-column:1/-1;
+}
+
+.form-field label{
+  color:var(--cream);
+  font-size:.81rem;
+  font-weight:700;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea{
+  width:100%;
+  appearance:none;
+  background:#171717;
+  color:var(--cream);
+  border:1px solid rgba(241,236,227,.24);
+  border-radius:2px;
+  padding:13px 14px;
+  font:inherit;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+
+.form-field textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder{
+  color:#8f8a83;
+}
+
+.form-field select{
+  background-color:#171717;
+  background-image:
+    linear-gradient(45deg,transparent 50%,var(--cream) 50%),
+    linear-gradient(135deg,var(--cream) 50%,transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 13px) 50%;
+  background-size:5px 5px,5px 5px;
+  background-repeat:no-repeat;
+}
+
+.form-field select option{
+  background:var(--brown);
+  color:var(--cream);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{
+  border-color:var(--oxblood);
+  box-shadow:0 0 0 3px rgba(169,0,0,.22);
+}
+
+.form-submit{
+  width:100%;
+  margin-top:23px;
+  border:0;
+  border-radius:2px;
+  background:var(--oxblood);
+  color:var(--cream);
+  min-height:53px;
+  font:700 .94rem "DM Sans",sans-serif;
+  letter-spacing:.02em;
+  cursor:pointer;
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+
+.form-submit:hover{
+  background:#C00000;
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(169,0,0,.2);
+}
+
+.form-note{
+  margin:12px 0 0 !important;
+  font-size:.76rem !important;
+  text-align:center;
+  color:var(--taupe) !important;
+}
+
+/* Mobile contact layout */
+@media(max-width:900px){
+  .contact .container{
+    grid-template-columns:1fr;
+  }
+
+  .contact .hero-actions{
+    justify-content:flex-start;
+  }
+}
+
+@media(max-width:650px){
+  .contact{
+    padding:78px 0;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-field.full{
+    grid-column:auto;
+  }
+
+  .contact-form{
+    padding:24px 20px;
+  }
+
+  .contact .hero-actions .btn{
+    width:auto;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- =====================================================
@@ -1290,23 +1791,77 @@ footer {
 </section>
 
   <!-- CONTACT: Calls to action and contact methods -->
+    <!-- =========================================================
+       CONTACT / CTA SECTION
+       PURPOSE: Main contact area with direct links and a
+       pre-filled email form.
+       ========================================================= -->
   <section id="contact" class="contact">
-<div class="container">
-<div class="kicker">Let's Connect</div>
-<h2>Looking for someone reliable to help move the work forward?</h2>
-<p>I'm open to virtual assistant, administrative, customer support, operations, and digital support opportunities across industries.</p>
-<div class="hero-actions" style="justify-content:center">
-  <a class="btn btn-primary" href="https://calendly.com/chpaulcervantes/30min" target="_blank" rel="noopener">Book a Call</a>
-  <a class="btn btn-secondary" href="mailto:chpaulcervantes@gmail.com">Email Me</a>
-  <a class="btn btn-secondary" href="https://www.linkedin.com/in/christian-paul-cervantes-b14640399/" target="_blank" rel="noopener">LinkedIn</a>
-</div>
-<div class="contact-info">
-<span class="contact-chip">Davao City, Philippines</span>
-<span class="contact-chip">Remote Ready</span>
-<span class="contact-chip">Flexible Across US Time Zones</span>
-</div>
-</div>
-</section>
+    <div class="container">
+
+      <!-- LEFT: Contact message and direct contact buttons -->
+      <div class="contact-copy">
+        <div class="kicker">Let's Connect</div>
+        <h2>Looking for someone reliable to help move the work forward?</h2>
+        <p>I'm available to support insurance agencies with reliable operations, administrative, client service, and workflow assistance.</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-animate" href="https://calendly.com/chpaulcervantes/30min" target="_blank" rel="noopener">Book a Call</a>
+          <a class="btn btn-secondary btn-animate" href="mailto:chpaulcervantes@gmail.com">Email Me</a>
+          <a class="btn btn-secondary btn-animate" href="https://www.linkedin.com/in/christian-paul-cervantes-b14640399/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+        <div class="contact-info">
+          <span class="contact-chip">Davao City, Philippines</span>
+          <span class="contact-chip">Remote Ready</span>
+          <span class="contact-chip">Flexible Across US Time Zones</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Send a Message form -->
+      <form class="contact-form" id="quick-contact-form">
+        <h3>Send a message</h3>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="contact-name">Your Name *</label>
+            <input id="contact-name" name="name" type="text" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-field">
+            <label for="contact-email">Your Email *</label>
+            <input id="contact-email" name="email" type="email" placeholder="john@example.com" required>
+          </div>
+
+          <div class="form-field full">
+            <label for="contact-company">Company / Organization</label>
+            <input id="contact-company" name="company" type="text" placeholder="Company Name (Optional)">
+          </div>
+
+          <div class="form-field full">
+            <label for="contact-service">How can I help?</label>
+            <select id="contact-service" name="service">
+              <option>Administrative Support</option>
+              <option>Insurance Operations</option>
+              <option>Client &amp; Carrier Support</option>
+              <option>Agency Systems &amp; Workflow</option>
+              <option>Creative &amp; Digital Support</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-field full">
+            <label for="contact-message">Message *</label>
+            <textarea id="contact-message" name="message" placeholder="Tell me about your business needs or projects..." required></textarea>
+          </div>
+        </div>
+
+        <button class="form-submit btn-animate" type="submit">Send Message ↗</button>
+        <p class="form-note">This opens your email client with your message ready to send.</p>
+      </form>
+
+    </div>
+  </section>
 </main>
   <!-- FOOTER: Bottom of the website -->
   <footer>© 2026 Christian Paul Cervantes • Virtual Assistant & Administrative Support</footer>
@@ -1321,6 +1876,42 @@ footer {
   </svg>
   Book a Call
 </a>
+
+
+<script>
+/* ============================================================
+   QUICK CONTACT FORM
+   ------------------------------------------------------------
+   The form does not send data to a server.
+   It opens the user's email client with a pre-filled message.
+   ============================================================ */
+(function () {
+  const form = document.getElementById('quick-contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!this.reportValidity()) return;
+
+    const value = name => this.elements[name].value.trim();
+
+    const subject = `Website inquiry from ${value('name')}`;
+
+    const body = [
+      `Name: ${value('name')}`,
+      `Email: ${value('email')}`,
+      `Company / Organization: ${value('company') || 'Not provided'}`,
+      `How can I help?: ${value('service')}`,
+      '',
+      'Message:',
+      value('message')
+    ].join('\n');
+
+    window.location.href =
+      `mailto:chpaulcervantes@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+})();
+</script>
 
 </body>
 </html>
